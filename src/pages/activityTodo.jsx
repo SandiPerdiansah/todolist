@@ -1,20 +1,17 @@
-import {Box, EmptyContent} from '../components/index.jsx'
+import {Box, EmptyContent, Modal} from '../components/index.jsx'
 import {Await, useLoaderData} from "react-router-dom";
 import {ACTIVITY_TODO_SERVICES} from "../services/ACTIVITY_TODO_SERVICES.js";
 import activityTodoEmptyImage from '../assets/img/todo-empty-state.png';
-import {Suspense, useEffect} from "react";
+import {Suspense, useContext} from "react";
 import {Loading} from "../components/organisms/Loading.jsx";
+import {ActivityTodoContext} from "../context/ActivityTodoContext.jsx";
+import {ModalAddActivityTodo} from "../components/molecules/ModalAddActivityTodo.jsx";
 
 
 export const ActivityTodo = () => {
     const {data} = useLoaderData();
 
-    useEffect(() => {
-        (async () => {
-            const response = await data;
-            console.log(response)
-        })()
-    }, []);
+    const {stateForm, setStateForm} = useContext(ActivityTodoContext);
 
     return (
         <Suspense fallback={<Loading/>}>
@@ -27,9 +24,14 @@ export const ActivityTodo = () => {
                                 alt='Activity Empty Animation'
                                 ariaLabel='Activity Empty Animation'
                                 dataCY='activity todo empty'
-                                onClick={() => {
-                                }}
+                                onClick={() => setStateForm((prevState) => ({
+                                    ...prevState,
+                                    modal: true
+                                }))}
                             />
+                            <Modal state={stateForm} titleId='add todo' description='add activity todo'>
+                                <ModalAddActivityTodo id='add activity todo'/>
+                            </Modal>
                         </Box>
                     )
                 }

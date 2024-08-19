@@ -9,7 +9,7 @@ export const ActivityLayout = () => {
             <ActivityProvider>
                 <ActivityTodoProvider>
                     <Header/>
-                    <Box className="mt-12 w-full">
+                    <Box className="mt-6 lg:mt-12 w-full">
                         <Outlet/>
                     </Box>
                 </ActivityTodoProvider>

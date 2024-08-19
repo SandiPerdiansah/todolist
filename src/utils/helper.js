@@ -10,7 +10,7 @@ const generateUniqueId = () => {
 };
 
 
-const helper = [
+const priorities = [
     {color: '#ED4C5C', value: 'Very High'},
     {color: '#F8A541', value: 'High'},
     {color: '#00A790', value: 'Medium'},
@@ -19,4 +19,4 @@ const helper = [
 ];
 
 
-export {generateUniqueId, helper};
+export {generateUniqueId, priorities};

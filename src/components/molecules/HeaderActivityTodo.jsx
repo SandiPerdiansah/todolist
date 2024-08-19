@@ -32,6 +32,7 @@ const sorties = [
 
 export const HeaderActivityTodo = () => {
     const {stateTodo, setStateTodo} = useContext(ActivityTodoContext);
+    const {setStateForm} = useContext(ActivityTodoContext);
 
     const modalSortRef = useRef(null);
     const buttonSortRef = useRef(null);
@@ -59,7 +60,7 @@ export const HeaderActivityTodo = () => {
     return (
         <>
             <HeaderActivityTodoTitle/>
-            <Box className='flex items-center justify-center gap-4'>
+            <Box className='flex items-center justify-center gap-4 lg:static absolute top-8 right-0'>
                 <Box>
                     <Button
                         ref={buttonSortRef}
@@ -89,8 +90,10 @@ export const HeaderActivityTodo = () => {
                 </Box>
 
 
-                <HeaderButton onCLick={() => {
-                }}/>
+                <HeaderButton onCLick={() =>setStateForm((prevState) => ({
+                    ...prevState,
+                    modal:true
+                }))}/>
             </Box>
         </>
     )

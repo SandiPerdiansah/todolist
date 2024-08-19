@@ -8,14 +8,14 @@ export const Navbar = () => (
     >
         <Box
             as='nav'
-            className='w-full p-6 ps-32 bg-primary'
+            className='w-full p-4 lg:p-6 lg:ps-32 bg-primary'
             role='navigation'
             aria-label='main navigation'
             data-cy='navigation'
         >
             <Heading
                 as='h1'
-                className='font-bold text-white text-2xl'
+                className='font-bold text-white text-xl lg:text-2xl'
                 aria-label='navigation title'
             >
                 <Link to='/' aria-label='back to home'>TO DO LIST APP</Link>

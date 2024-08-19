@@ -23,6 +23,15 @@
         padding: 7rem 8rem 2rem;
     }
 
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;     /* Firefox */
+    }
+
     /* HTML: <div class="loader"></div> */
     .loader {
         width: 65px;
@@ -67,6 +76,16 @@
         }
         100% {
             inset: 0 35px 35px 0;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        section{
+            padding: 6rem 1.4rem 2rem;
+        }
+
+        .editTitle {
+            width: 100% !important;
         }
     }
 }

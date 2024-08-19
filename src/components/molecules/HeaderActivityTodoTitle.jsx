@@ -1,17 +1,20 @@
 // noinspection JSCheckFunctionSignatures
 
-import {Box, Button, Input, Label} from "../index.jsx";
+import {Box, Button, Input, Label, Text} from "../index.jsx";
 import {IoIosArrowBack} from "react-icons/io";
 import {MdOutlineEdit} from "react-icons/md";
 import {useContext, useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {ACTIVITY_SERVICES} from "../../services/ACTIVITY_SERVICES.js";
 import {ActivityContext} from "../../context/ActivityContext.jsx";
+import {useClickOutside} from "../../hooks/useClickOutside.jsx";
 
 export const HeaderActivityTodoTitle = () => {
     const navigate = useNavigate();
-    const inputRef = useRef(null);
     const {id} = useParams();
+
+    const inputRef = useRef(null);
+    const buttonRef = useRef(null)
 
     const {setActivities} = useContext(ActivityContext);
 
@@ -105,36 +108,66 @@ export const HeaderActivityTodoTitle = () => {
         }
     };
 
+    useClickOutside({
+        targetElement: buttonRef,
+        targetingElement: inputRef,
+        action: () => {
+            if (stateInput.input) {
+                setStateInput((prevState) => ({
+                    ...prevState,
+                    input: false
+                }))
+            }
+        }
+    })
+
     return (
-        <Box className='flex items-center justify-start'>
-            <Button
-                type='button'
-                aria-label='kembali ke halaman sebelumnya'
-                onClick={() => navigate('/')}
-            >
-                <IoIosArrowBack aria-hidden='true' size={25} strokeWidth={2} color='#111111'/>
-            </Button>
-            <Box className='relative ms-3'>
-                <Label htmlFor='title'/>
-                <Input
-                    type='text'
-                    name='title'
-                    id='title'
-                    value={stateInput.title}
-                    aria-label='title activity'
-                    className={`text-secondary text-3xl font-bold ${stateInput.input && 'border-b pb-1'} bg-transparent border-secondary outline-none`}
-                    disabled={!stateInput.input}
-                    ref={inputRef}
-                    style={{width: stateInput.width, minWidth: '13rem'}}
-                />
+        <>
+            <Box
+                className='z-[999] bg-primary flex gap-3 items-center justify-start w-full p-4 fixed top-0 left-0 right-0 lg:hidden'>
+                <Button
+                    type='button'
+                    aria-label='kembali ke halaman sebelumnya'
+                    onClick={() => navigate('/')}
+                >
+                    <IoIosArrowBack aria-hidden='true' size={25} strokeWidth={2} color='#ffffff'/>
+                </Button>
+                <Text className='text-white font-medium'>{stateInput.title}</Text>
             </Box>
-            <Button
-                type='button'
-                aria-label='edit activity'
-                onClick={handleFocusInput}
-            >
-                <MdOutlineEdit size={20} color='#A4A4A4'/>
-            </Button>
-        </Box>
+
+            <Box className='lg:static absolute flex items-center justify-between -top-4 lg:justify-start'>
+                <Button
+                    type='button'
+                    aria-label='kembali ke halaman sebelumnya'
+                    onClick={() => navigate('/')}
+                    className='hidden lg:block'
+                >
+                    <IoIosArrowBack aria-hidden='true' size={25} strokeWidth={2} color='#111111'/>
+                </Button>
+                <Box className='relative ms-3'>
+                    <Label htmlFor='title'/>
+                    <Input
+                        type='text'
+                        name='title'
+                        id='title'
+                        value={stateInput.title}
+                        aria-label='title activity'
+                        className={`editTitle text-secondary text-xl lg:text-3xl font-bold ${stateInput.input && 'border-b' +
+                        ' pb-1'} bg-transparent border-secondary outline-none`}
+                        disabled={!stateInput.input}
+                        ref={inputRef}
+                        style={{width: stateInput.width, minWidth: '13rem'}}
+                    />
+                </Box>
+                <Button
+                    ref={buttonRef}
+                    type='button'
+                    aria-label='edit activity'
+                    onClick={handleFocusInput}
+                >
+                    <MdOutlineEdit size={20} color='#A4A4A4'/>
+                </Button>
+            </Box>
+        </>
     );
 };

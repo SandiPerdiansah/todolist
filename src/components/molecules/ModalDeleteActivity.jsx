@@ -3,7 +3,7 @@ import {GoAlert} from "react-icons/go";
 import {useContext} from "react";
 import {ActivityContext} from "../../context/ActivityContext.jsx";
 
-export const ModalDeleteActivity = ({stateDelete}) => {
+export const ModalDeleteActivity = ({stateDelete, id}) => {
     const {setStateDelete, handleDeleteActivity} = useContext(ActivityContext);
 
     const handleDeleteAndHideModal = () => {
@@ -27,13 +27,14 @@ export const ModalDeleteActivity = ({stateDelete}) => {
 
     return (
         <Box
-            className={`w-[490px] h-[320px] bg-white shadow-lg flex items-center gap-6 justify-center flex-col text-center px-5 py-8 rounded-xl transition-all duration-300 ${!stateDelete.content ? 'translate-y-full opacity-0 -z-50' : 'translate-y-0 opacity-100 z-50'}`}>
+            id={id}
+            className={`w-[320px] h-[300px] lg:w-[490px] lg:h-[320px] bg-white shadow-lg flex items-center gap-6 justify-center flex-col text-center px-5 py-8 rounded-xl transition-all duration-300 ${!stateDelete.content ? 'translate-y-full opacity-0 -z-50' : 'translate-y-0 opacity-100 z-50'}`}>
             <GoAlert
                 size={60}
                 color='#ED4C5C'
                 aria-hidden='true'
             />
-            <Text className='text-secondary'> Apakah anda yakin menghapus activity <br/>
+            <Text className='text-secondary lg:text-base text-[0.8rem]'>Apakah anda yakin menghapus activity <br/>
                 <strong>“{stateDelete.data.title}”?</strong>
             </Text>
             <Box className='flex items-center justify-center gap-4 mt-6'>

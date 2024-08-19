@@ -21,11 +21,11 @@ export const ActivityListItem = ({data}) => {
         <ListItem
             onClick={(e) => handleNavigateActivityTodo(e)}
             aria-label='list item activity'
-            className='w-[235px] h-[234px] cursor-pointer bg-white shadow-md rounded-lg flex flex-col justify-between p-5'
+            className='w-[160px] h-[160px] lg:w-[235px] lg:h-[234px] cursor-pointer bg-white shadow-md rounded-lg flex flex-col justify-between p-5'
         >
-            <Heading as='h3' className='font-bold text-secondary text-xl'>{data.title}</Heading>
+            <Heading as='h3' className='font-bold text-secondary text-base lg:text-xl'>{data.title}</Heading>
             <Box className='flex items-center justify-between'>
-                <Text className='text-xs text-[#888888]'>{formatedDate(data.created_at)}</Text>
+                <Text className='text-[0.7rem] lg:text-xs text-[#888888]'>{formatedDate(data.created_at)}</Text>
                 <Button
                     type='button'
                     aria-label='delete activity'
