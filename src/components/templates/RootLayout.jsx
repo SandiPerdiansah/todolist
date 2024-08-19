@@ -1,13 +1,23 @@
-import {Outlet} from "react-router-dom";
+import {Outlet, useNavigation} from "react-router-dom";
 import {Navbar} from "../index.jsx";
+import {Loading} from "../organisms/Loading.jsx";
 
 export const RootLayout = () => {
-    return(
+    const navigation = useNavigation();
+
+    return (
         <>
             <Navbar/>
-            <main>
-                <Outlet/>
-            </main>
+            {
+                navigation.state === 'loading'
+                    ? <Loading/>
+                    : (
+                        <main>
+                            <Outlet/>
+                        </main>
+                    )
+            }
+
         </>
     )
 }

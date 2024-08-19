@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 export const Navbar = () => (
     <Box
         as='header'
-        className='w-full shadow-lg fixed top-0 left-0 right-0 z-30'
+        className='w-full shadow-lg fixed top-0 left-0 right-0 z-10'
     >
         <Box
             as='nav'

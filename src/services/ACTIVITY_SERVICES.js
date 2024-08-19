@@ -10,6 +10,15 @@ export const ACTIVITY_SERVICES = {
         }
     },
 
+    async getDetailActivity(id) {
+        try {
+            const response = await fetch(`${api.url}/activity-groups/${id}`);
+            return await response.json();
+        } catch (e) {
+            return `Error ${e.message}`;
+        }
+    },
+
     async addActivity() {
         try {
             const response = await fetch(`${api.url}/activity-groups`, {
