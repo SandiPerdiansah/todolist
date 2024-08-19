@@ -17,7 +17,7 @@ export const Activity = () => {
                         <Box className='w-full'>
                             {
                                 activities.data.length > 0 ? (
-                                    <List className='w-full flex items-center justify-start flex-wrap gap-5 lg:gap-7 mx-auto'>
+                                    <List className='w-full flex items-center justify-start flex-wrap gap-3 lg:gap-7 mx-auto'>
                                         {
                                             activities.data.map((data) => (
                                                 <ActivityListItem

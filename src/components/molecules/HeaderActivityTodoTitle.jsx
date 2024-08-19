@@ -135,7 +135,7 @@ export const HeaderActivityTodoTitle = () => {
                 <Text className='text-white font-medium'>{stateInput.title}</Text>
             </Box>
 
-            <Box className='lg:static absolute flex items-center justify-between -top-4 lg:justify-start'>
+            <Box className='lg:static absolute flex items-center justify-between top-0 left-0 right-0 lg:justify-start'>
                 <Button
                     type='button'
                     aria-label='kembali ke halaman sebelumnya'

@@ -21,7 +21,7 @@ export const ActivityListItem = ({data}) => {
         <ListItem
             onClick={(e) => handleNavigateActivityTodo(e)}
             aria-label='list item activity'
-            className='w-[160px] h-[160px] lg:w-[235px] lg:h-[234px] cursor-pointer bg-white shadow-md rounded-lg flex flex-col justify-between p-5'
+            className='w-[150px] h-[150px] lg:w-[235px] lg:h-[234px] cursor-pointer bg-white shadow-md rounded-lg flex flex-col justify-between p-5'
         >
             <Heading as='h3' className='font-bold text-secondary text-base lg:text-xl'>{data.title}</Heading>
             <Box className='flex items-center justify-between'>

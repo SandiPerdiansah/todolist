@@ -60,7 +60,7 @@ export const HeaderActivityTodo = () => {
     return (
         <>
             <HeaderActivityTodoTitle/>
-            <Box className='flex items-center justify-center gap-4 lg:static absolute top-8 right-0'>
+            <Box className='flex items-center justify-center gap-4 lg:static absolute top-14 right-0'>
                 <Box>
                     <Button
                         ref={buttonSortRef}
