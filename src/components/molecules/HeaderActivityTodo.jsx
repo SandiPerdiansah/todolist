@@ -103,6 +103,7 @@ export const HeaderActivityTodo = () => {
                         aria-label='sort activity todo'
                         className='border border-[#E5E5E5] rounded-full p-3'
                         onClick={handleShowModalSort}
+                        data-cy='todo-sort-button'
                     >
                         <LuArrowUpDown color='#888888' size={20}/>
                     </Button>
@@ -128,7 +129,7 @@ export const HeaderActivityTodo = () => {
                 </Box>
 
 
-                <HeaderButton onCLick={() => setStateForm((prevState) => ({
+                <HeaderButton dataCy='todo-add-button' onCLick={() => setStateForm((prevState) => ({
                     ...prevState,
                     type:'add',
                     modal: true

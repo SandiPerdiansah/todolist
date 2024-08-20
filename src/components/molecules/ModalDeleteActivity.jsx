@@ -64,6 +64,7 @@ export const ModalDeleteActivity = ({stateDelete, id}) => {
                 <Button
                     type='button'
                     aria-label='batal hapus activity'
+                    data-cy='modal-delete-cancel-button'
                     className='w-[120px] py-2 text-[#4A4A4A] flex items-center justify-center bg-[#F4F4F4] rounded-3xl'
                     onClick={() => setStateDelete((prevState) => ({
                         ...prevState,
@@ -76,7 +77,8 @@ export const ModalDeleteActivity = ({stateDelete, id}) => {
                 </Button>
                 <Button
                     type='button'
-                    aria-label='batal hapus activity'
+                    data-cy='activity-item-delete-button'
+                    aria-label='hapus activity'
                     className='w-[120px] py-2 text-white flex items-center justify-center bg-[#ED4C5C] rounded-3xl'
                     onClick={stateDelete.type === 'deleteActivity' ? handleDeleteActivityList : handleDeleteActivityTodo}
                 >

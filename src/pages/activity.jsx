@@ -37,7 +37,7 @@ export const Activity = () => {
                                     />
                                 )
                             }
-                            <Modal state={stateDelete} titleId='delete modal' description='delete activity'>
+                            <Modal state={stateDelete} titleId='delete modal' description='delete activity' data-cy='modal-delete'>
                                 <Alert stateDelete={stateDelete}/>
                                 <ModalDeleteActivity stateDelete={stateDelete} id='delete activity' />
                             </Modal>

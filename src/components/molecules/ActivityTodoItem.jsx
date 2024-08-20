@@ -78,6 +78,7 @@ export const ActivityTodoItem = ({data}) => {
                     ref={inputRef}
                     onChange={(e) => handleCheckInput(e, data)}
                     checked={+data.is_active === 0}
+                    data-cy='todo-item-checkbox'
                 />
             </Box>
             <Box className='flex items-center justify-center gap-3'>
@@ -85,11 +86,14 @@ export const ActivityTodoItem = ({data}) => {
                     className='flex-shrink-0 w-3 h-3 rounded-full'
                     style={{backgroundColor: colorConverter(data.priority)}}>
                 </Box>
-                <Text as='span'
+                <Text
+                    data-cy='todo-title'
+                    as='span'
                       className={`${+data.is_active === 0 && 'line-through text-gray-500'} font-medium`}>{data.title}</Text>
                 <Button
                     type='button'
                     aria-label='edit activity todo'
+                    data-cy='todo-item-edit-button'
                     onClick={() => setStateForm((prevState) => ({
                         ...prevState,
                         type: 'edit',
@@ -111,6 +115,7 @@ export const ActivityTodoItem = ({data}) => {
                     content: true,
                     data,
                 }))}
+                data-cy='todo-item-delete-button'
             >
                 <FaRegTrashCan color='#888888' size={18}/>
             </Button>

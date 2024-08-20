@@ -58,7 +58,7 @@ export const ActivityTodo = () => {
                                         src={activityTodoEmptyImage}
                                         alt='Activity Empty Animation'
                                         ariaLabel='Activity Empty Animation'
-                                        dataCY='activity todo empty'
+                                        dataCY='todo-empty-state'
                                         onClick={() => setStateForm((prevState) => ({
                                             ...prevState,
                                             type:'add',
@@ -72,7 +72,7 @@ export const ActivityTodo = () => {
                             </Modal>
                             <Modal state={stateDelete} titleId='delete modal' description='delete activity'>
                                 <Alert stateDelete={stateDelete}/>
-                                <ModalDeleteActivity stateDelete={stateDelete} id='delete activity' />
+                                <ModalDeleteActivity stateDelete={stateDelete} id='delete activity'  />
                             </Modal>
                         </Box>
                     )

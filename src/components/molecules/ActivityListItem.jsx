@@ -22,13 +22,15 @@ export const ActivityListItem = ({data}) => {
             onClick={(e) => handleNavigateActivityTodo(e)}
             aria-label='list item activity'
             className='w-[150px] h-[150px] lg:w-[235px] lg:h-[234px] cursor-pointer bg-white shadow-md rounded-lg flex flex-col justify-between p-5'
+            data-cy='activity-item'
         >
-            <Heading as='h3' className='font-bold text-secondary text-base lg:text-xl'>{data.title}</Heading>
+            <Heading as='h3' className='font-bold text-secondary text-base lg:text-xl' data-cy='activity-item-title'>{data.title}</Heading>
             <Box className='flex items-center justify-between'>
-                <Text className='text-[0.7rem] lg:text-xs text-[#888888]'>{formatedDate(data.created_at)}</Text>
+                <Text className='text-[0.7rem] lg:text-xs text-[#888888]' data-cy='activity-item-date'>{formatedDate(data.created_at)}</Text>
                 <Button
                     type='button'
                     aria-label='delete activity'
+                    data-cy='activity-item-delete-button'
                     onClick={() => setStateDelete((prevState) => ({
                         ...prevState,
                         modal: true,
@@ -40,5 +42,5 @@ export const ActivityListItem = ({data}) => {
                 </Button>
             </Box>
         </ListItem>
-    )
+    );
 }

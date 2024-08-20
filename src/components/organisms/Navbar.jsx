@@ -17,6 +17,7 @@ export const Navbar = () => (
                 as='h1'
                 className='font-bold text-white text-xl lg:text-2xl'
                 aria-label='navigation title'
+                data-cy='header-title'
             >
                 <Link to='/' aria-label='back to home'>TO DO LIST APP</Link>
             </Heading>

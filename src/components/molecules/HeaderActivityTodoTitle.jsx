@@ -128,6 +128,7 @@ export const HeaderActivityTodoTitle = () => {
                 <Button
                     type='button'
                     aria-label='kembali ke halaman sebelumnya'
+                    data-cy='todo-back-button'
                     onClick={() => navigate('/')}
                 >
                     <IoIosArrowBack aria-hidden='true' size={25} strokeWidth={2} color='#ffffff'/>
@@ -157,6 +158,7 @@ export const HeaderActivityTodoTitle = () => {
                         disabled={!stateInput.input}
                         ref={inputRef}
                         style={{width: stateInput.width, minWidth: '13rem'}}
+                        data-cy='todo-title'
                     />
                 </Box>
                 <Button
@@ -164,6 +166,7 @@ export const HeaderActivityTodoTitle = () => {
                     type='button'
                     aria-label='edit activity'
                     onClick={handleFocusInput}
+                    data-cy='todo-title-edit-button'
                 >
                     <MdOutlineEdit size={20} color='#A4A4A4'/>
                 </Button>

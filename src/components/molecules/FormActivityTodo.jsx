@@ -107,6 +107,7 @@ export const FormActivityTodo = () => {
                             aria-label='Input title todo'
                             placeholder='Tambahkan nama list item'
                             required
+                            data-cy='modal-add-name-input'
                             className='w-full border border-[#E5E5E5] rounded-md py-2 px-4 focus:outline-primary placeholder:font-light'
                             onInput={(e) => setValueInput(e.target.value)}
                         />
@@ -153,6 +154,7 @@ export const FormActivityTodo = () => {
                         </Box>
 
                         <Box
+                            data-cy='modal-add-priority-dropdown'
                             ref={dropdownRef}
                             tabIndex={-1}
                             role='listbox'
@@ -193,6 +195,7 @@ export const FormActivityTodo = () => {
                 </Box>
                 <Box className='flex items-center justify-end mt-6 me-8'>
                     <Button
+                        data-cy='modal-add-save-button'
                         type='submit'
                         aria-label='Tambah todo item'
                         className={`py-2 px-5 bg-primary text-white font-medium rounded-3xl ${valueInput.length > 0 ? 'opacity-100' : 'opacity-50'}`}
