@@ -77,7 +77,7 @@ export const ModalDeleteActivity = ({stateDelete, id}) => {
                 </Button>
                 <Button
                     type='button'
-                    data-cy='activity-item-delete-button'
+                    data-cy='modal-delete-confirm-button'
                     aria-label='hapus activity'
                     className='w-[120px] py-2 text-white flex items-center justify-center bg-[#ED4C5C] rounded-3xl'
                     onClick={stateDelete.type === 'deleteActivity' ? handleDeleteActivityList : handleDeleteActivityTodo}

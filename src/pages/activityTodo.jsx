@@ -70,7 +70,7 @@ export const ActivityTodo = () => {
                             <Modal state={stateForm} titleId='add todo' description='add activity todo'>
                                 <ModalAddActivityTodo id='add activity todo'/>
                             </Modal>
-                            <Modal state={stateDelete} titleId='delete modal' description='delete activity'>
+                            <Modal state={stateDelete} titleId='delete modal'  description='delete activity'>
                                 <Alert stateDelete={stateDelete}/>
                                 <ModalDeleteActivity stateDelete={stateDelete} id='delete activity'  />
                             </Modal>

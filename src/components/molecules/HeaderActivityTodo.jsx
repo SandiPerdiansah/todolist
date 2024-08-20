@@ -9,23 +9,23 @@ import {useClickOutside} from "../../hooks/useClickOutside.jsx";
 
 const sorties = [
     {
-        icon: <HiOutlineBarsArrowDown color='#16ABF8' size={20}/>,
+        icon: <HiOutlineBarsArrowDown color='#16ABF8' size={20} data-cy='sort-selection-icon'/>,
         text: 'Terbaru'
     },
     {
-        icon: <HiOutlineBarsArrowUp color='#16ABF8' size={20}/>,
+        icon: <HiOutlineBarsArrowUp color='#16ABF8' size={20} data-cy='sort-selection-icon'/>,
         text: 'Terlama'
     },
     {
-        icon: <LuArrowDownAZ color='#16ABF8' size={20}/>,
+        icon: <LuArrowDownAZ color='#16ABF8' size={20} data-cy='sort-selection-icon'/>,
         text: 'A-Z'
     },
     {
-        icon: <LuArrowDownZA color='#16ABF8' size={20}/>,
+        icon: <LuArrowDownZA color='#16ABF8' size={20} data-cy='sort-selection-icon'/>,
         text: 'Z-A'
     },
     {
-        icon: <LuArrowUpDown color='#16ABF8' size={20}/>,
+        icon: <LuArrowUpDown color='#16ABF8' size={20} data-cy='sort-selection-icon'/>,
         text: 'Belum Selesai'
     },
 ]
@@ -115,12 +115,13 @@ export const HeaderActivityTodo = () => {
                             {
                                 sorties.map((data, index) => (
                                     <ListItem
+                                        data-cy='sort-selection'
                                         key={index}
                                         className={`flex items-center justify-start gap-3 py-3 px-4 hover:bg-slate-100 cursor-pointer ${index === 0 && 'rounded-t-md'} ${index === 4 && 'rounded-b-md'}`}
                                         onClick={() => handleCLickSort(data)}
                                     >
                                         {data.icon}
-                                        <Text className='text-secondary '>{data.text}</Text>
+                                        <Text className='text-secondary' data-cy='sort-selection-title'>{data.text}</Text>
                                     </ListItem>
                                 ))
                             }
