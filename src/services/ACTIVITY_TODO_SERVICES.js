@@ -13,6 +13,7 @@ export const ACTIVITY_TODO_SERVICES = {
             body: JSON.stringify({
                 activity_group_id: data.id,
                 title: data.title,
+                priority: data.priority,
             })
         });
 
@@ -26,9 +27,11 @@ export const ACTIVITY_TODO_SERVICES = {
             body: JSON.stringify({
                 title: data.title,
                 is_active: data.is_active,
-                priority:data.priority
+                priority: data.priority
             })
         });
+
+        return response.json();
     },
 
     async deleteTodoItem(id) {

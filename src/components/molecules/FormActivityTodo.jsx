@@ -3,11 +3,76 @@ import {useContext, useEffect, useRef, useState} from "react";
 import {ActivityTodoContext} from "../../context/ActivityTodoContext.jsx";
 import {priorities} from "../../utils/helper.js";
 import {IoIosArrowUp, IoMdCheckmark} from "react-icons/io";
+import {useParams} from "react-router-dom";
 
 export const FormActivityTodo = () => {
-    const {stateForm, setStateForm} = useContext(ActivityTodoContext);
+    const {stateForm, stateTodo, setStateForm, handleAddTodo, handleEditTodo} = useContext(ActivityTodoContext);
+
     const [valueInput, setValueInput] = useState('');
+    const [textButton, setTextButton] = useState('Simpan');
+
     const dropdownRef = useRef(null);
+
+    const {id} = useParams();
+
+    const handleAddActivityTodo = async (e) => {
+        e.preventDefault();
+
+        if (stateForm.priority || !id) return;
+
+        setTextButton('Loading...');
+
+        try {
+            const newTodo = {
+                id: +id,
+                title: e.target.title.value,
+                priority: stateForm.value.toLowerCase().replace(' ', '-')
+            };
+            await handleAddTodo(newTodo);
+        } catch (e) {
+            console.log(`Error ${e.message}`);
+        } finally {
+            e.target.title.value = '';
+            setTextButton('Kirim');
+            setStateForm((prevState) => ({
+                ...prevState,
+                modal: false,
+                value: priorities[0].value,
+                color: priorities[0].color,
+            }))
+        }
+    }
+
+    const handleEditActivityTodo = async (e) => {
+        e.preventDefault();
+
+        if (stateForm.priority || !id) return;
+
+        setTextButton('Loading...');
+
+        try {
+
+            const newTodo = {
+                id: stateForm.data.id,
+                title: e.target.title.value,
+                priority: stateForm.value.toLowerCase().replace(' ', '-')
+            };
+
+            await handleEditTodo(newTodo);
+
+        } catch (e) {
+            console.log(`Error ${e.message}`);
+        } finally {
+            e.target.title.value = '';
+            setTextButton('Kirim');
+            setStateForm((prevState) => ({
+                ...prevState,
+                modal: false,
+                value: priorities[0].value,
+                color: priorities[0].color,
+            }))
+        }
+    }
 
     const handleKeyDown = (e) => {
         if (e.key === 'Escape') {
@@ -24,9 +89,10 @@ export const FormActivityTodo = () => {
         }
     }, [stateForm.priority]);
 
+
     return (
         <Box className='w-full pt-10 pb-4'>
-            <form>
+            <form onSubmit={(e) => stateForm.type === 'add' ? handleAddActivityTodo(e) : handleEditActivityTodo(e)}>
                 <Box className='px-8 border-b pb-8'>
                     <Box>
                         <Label
@@ -90,26 +156,23 @@ export const FormActivityTodo = () => {
                             ref={dropdownRef}
                             tabIndex={-1}
                             role='listbox'
-                            aria-activedescendant={stateForm.priorityId} // Menggunakan ID elemen aktif
                             className={`no-scrollbar w-48 h-48 overflow-y-auto rounded-b-md absolute bg-white border border-[#E5E5E5] transition-all duration-300 ${!stateForm.priority ? 'opacity-0 -z-40' : 'opacity-100 z-50'} origin-bottom`}
                             onKeyDown={handleKeyDown}
                         >
-                            {/* Menghilangkan ul */}
                             {priorities.map((data, index) => {
-                                const id = `priority-option-${index}`; // Buat ID unik untuk setiap item
+                                const id = `priority-option-${index}`;
                                 return (
                                     <ListItem
                                         key={id}
-                                        id={id} // Berikan ID ke elemen ListItem
+                                        id={id}
                                         role='option'
                                         aria-selected={stateForm.color === data.color}
                                         className='p-3 border-b flex items-center justify-start gap-3 hover:bg-slate-100 cursor-pointer'
                                         onClick={() => setStateForm((prevState) => ({
                                             ...prevState,
+                                            priority: false,
                                             value: data.value,
                                             color: data.color,
-                                            priority: false,
-                                            priorityId: id, // Set ID elemen yang dipilih
                                         }))}
                                     >
                                         <Box
@@ -134,7 +197,7 @@ export const FormActivityTodo = () => {
                         aria-label='Tambah todo item'
                         className={`py-2 px-5 bg-primary text-white font-medium rounded-3xl ${valueInput.length > 0 ? 'opacity-100' : 'opacity-50'}`}
                     >
-                        Simpan
+                        {textButton}
                     </Button>
                 </Box>
             </form>

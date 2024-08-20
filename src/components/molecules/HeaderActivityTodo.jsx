@@ -31,8 +31,16 @@ const sorties = [
 ]
 
 export const HeaderActivityTodo = () => {
-    const {stateTodo, setStateTodo} = useContext(ActivityTodoContext);
-    const {setStateForm} = useContext(ActivityTodoContext);
+    const {
+        stateTodo,
+        setStateTodo,
+        setStateForm,
+        sortNewTodo,
+        sortOldTodo,
+        sortAzTodo,
+        sortZaTodo,
+        sortNotCompleted
+    } = useContext(ActivityTodoContext);
 
     const modalSortRef = useRef(null);
     const buttonSortRef = useRef(null);
@@ -55,7 +63,34 @@ export const HeaderActivityTodo = () => {
                 }));
             }
         }
-    })
+    });
+
+    const handleCLickSort = (data) => {
+        switch (data.text) {
+            case 'Terbaru':
+                sortNewTodo();
+                break;
+            case 'Terlama':
+                sortOldTodo();
+                break;
+            case 'A-Z':
+                sortAzTodo();
+                break;
+            case 'Z-A':
+                sortZaTodo();
+                break;
+            case 'Belum Selesai':
+                sortNotCompleted();
+                break;
+            default:
+                return;
+        }
+
+        setStateTodo((prevState) => ({
+            ...prevState,
+            sort: false
+        }));
+    };
 
     return (
         <>
@@ -78,8 +113,11 @@ export const HeaderActivityTodo = () => {
                         <List className='w-full'>
                             {
                                 sorties.map((data, index) => (
-                                    <ListItem key={index}
-                                              className={`flex items-center justify-start gap-3 py-3 px-4 hover:bg-slate-100 cursor-pointer ${index === 0 && 'rounded-t-md'} ${index === 4 && 'rounded-b-md'}`}>
+                                    <ListItem
+                                        key={index}
+                                        className={`flex items-center justify-start gap-3 py-3 px-4 hover:bg-slate-100 cursor-pointer ${index === 0 && 'rounded-t-md'} ${index === 4 && 'rounded-b-md'}`}
+                                        onClick={() => handleCLickSort(data)}
+                                    >
                                         {data.icon}
                                         <Text className='text-secondary '>{data.text}</Text>
                                     </ListItem>
@@ -90,11 +128,12 @@ export const HeaderActivityTodo = () => {
                 </Box>
 
 
-                <HeaderButton onCLick={() =>setStateForm((prevState) => ({
+                <HeaderButton onCLick={() => setStateForm((prevState) => ({
                     ...prevState,
-                    modal:true
+                    type:'add',
+                    modal: true
                 }))}/>
             </Box>
         </>
-    )
+    );
 }

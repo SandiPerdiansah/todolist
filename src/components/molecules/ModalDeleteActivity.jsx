@@ -2,11 +2,14 @@ import {Box, Button, Text} from "../index.jsx";
 import {GoAlert} from "react-icons/go";
 import {useContext} from "react";
 import {ActivityContext} from "../../context/ActivityContext.jsx";
+import {ACTIVITY_TODO_SERVICES} from "../../services/ACTIVITY_TODO_SERVICES.js";
+import {ActivityTodoContext} from "../../context/ActivityTodoContext.jsx";
 
 export const ModalDeleteActivity = ({stateDelete, id}) => {
     const {setStateDelete, handleDeleteActivity} = useContext(ActivityContext);
+    const {setStateTodo} = useContext(ActivityTodoContext);
 
-    const handleDeleteAndHideModal = () => {
+    const handleDeleteActivityList = () => {
         setStateDelete((prevState) => ({
             ...prevState,
             content: false,
@@ -23,6 +26,26 @@ export const ModalDeleteActivity = ({stateDelete, id}) => {
                 data: {}
             }));
         }, 2000)
+    }
+
+    const handleDeleteActivityTodo = async () => {
+        try {
+            await ACTIVITY_TODO_SERVICES.deleteTodoItem(stateDelete.data.id);
+            setStateTodo((prevState) => ({
+                ...prevState,
+                data: prevState.data.filter((item) => +item.id !== +stateDelete.data.id)
+            }));
+        } catch (e) {
+            console.log(`Error : ${e.message}`);
+        } finally {
+            setStateDelete((prevState) => ({
+                ...prevState,
+                type: 'deleteActivity',
+                modal: false,
+                content: false,
+                data: {}
+            }))
+        }
     }
 
     return (
@@ -55,7 +78,7 @@ export const ModalDeleteActivity = ({stateDelete, id}) => {
                     type='button'
                     aria-label='batal hapus activity'
                     className='w-[120px] py-2 text-white flex items-center justify-center bg-[#ED4C5C] rounded-3xl'
-                    onClick={handleDeleteAndHideModal}
+                    onClick={stateDelete.type === 'deleteActivity' ? handleDeleteActivityList : handleDeleteActivityTodo}
                 >
                     Hapus
                 </Button>

@@ -4,6 +4,7 @@ import {ActivityProvider} from "../../context/ActivityContext.jsx";
 import {ActivityTodoProvider} from "../../context/ActivityTodoContext.jsx";
 
 export const ActivityLayout = () => {
+
     return (
         <Box as="section">
             <ActivityProvider>

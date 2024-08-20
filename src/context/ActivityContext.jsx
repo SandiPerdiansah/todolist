@@ -8,6 +8,7 @@ export const ActivityContext = createContext(null);
 export const ActivityProvider = ({children}) => {
     const request = ACTIVITY_SERVICES;
     const [stateDelete, setStateDelete] = useState({
+        type:'deleteActivity',
         modal: false,
         content: false,
         alert:false,
